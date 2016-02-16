@@ -27,22 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
 import java.net.URL;
-/**
- * Sample {@link Builder}.
- *
- * <p>
- * When the user configures the project and enables this builder,
- * {@link DescriptorImpl#newInstance(StaplerRequest)} is invoked
- * and a new {@link OneAlertTrigger} is created. The created
- * instance is persisted to the project configuration XML by using
- * XStream, so this allows you to use instance fields (like {@link #name})
- * to remember the configuration.
- *
- * <p>
- * When a build is performed, the {@link #perform} method will be invoked. 
- *
- * @author Kohsuke Kawaguchi
- */
+
 public class OneAlertTrigger extends Notifier {
 
     public String serviceKey;
@@ -156,36 +141,20 @@ public class OneAlertTrigger extends Notifier {
         }
         return false;
     }    
-    // Overridden for better type safety.
-    // If your plugin doesn't really define any property on Descriptor,
-    // you don't have to do this.
+
     @Override
     public DescriptorImpl getDescriptor() {
         return (DescriptorImpl)super.getDescriptor();
     }
 
-    /**
-     * Descriptor for {@link HelloWorldBuilder}. Used as a singleton.
-     * The class is marked as public so that it can be accessed from views.
-     *
-     * <p>
-     * See <tt>src/main/resources/hudson/plugins/hello_world/OneAlertTrigger/*.jelly</tt>
-     * for the actual HTML fragment for the configuration screen.
-     */
+
     @Extension
     public static final class DescriptorImpl extends
             BuildStepDescriptor<Publisher> {
-
-        /*
-         * (non-Javadoc)
-         *
-         * @see hudson.tasks.BuildStepDescriptor#isApplicable(java.lang.Class)
-         */
         @Override
         public boolean isApplicable(Class<? extends AbstractProject> jobType) {
             return true;
-        }
-
+        }                
         /*
          * (non-Javadoc)
          *
